@@ -17,6 +17,7 @@ class AlienInvasion:
 		self.settings.screen_height = self.screen.get_rect().height
 		pygame.display.set_caption("Alien Invasion")
 		self.ship = Ship(self)
+		self.bullets = pygame.sprite.Group()
 
 		# Set the background color.
 		self.bg_color = (230, 230, 230)
@@ -26,6 +27,7 @@ class AlienInvasion:
 		while True:
 			self._check_events()
 			self.ship.update()
+			self.bullets.update()
 			self._update_screen()
 
 			# Make the most recently drawn screen visible.
