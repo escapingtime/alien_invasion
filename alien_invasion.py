@@ -158,6 +158,22 @@ class AlienInvasion:
 			alien.rect.y += self.settings.fleet_drop_speed
 		self.settings.fleet_direction *= -1
 
+	def _ship_hit(self):
+		"""Respond to the ship being hit by an alien."""
+		# Decrement ships_left.
+		self.stats.ships_left -= 1
+
+		# Get rid of any remaining aliens and bullets.
+		self.aliens.empty()
+		self.bullets.empty()
+
+		# Create a new fleet and center the ship.
+		self._create_fleet()
+		self.ship.center_ship()
+
+		# Pause.
+		sleep(0.5)
+
 	def _update_screen(self):
 		"""Update images on the screen, and flip to a new screen."""
 		self.screen.fill(self.settings.bg_color)
